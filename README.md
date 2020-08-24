@@ -1,4 +1,7 @@
-robot_self_filter [![Build Status](https://api.travis-ci.com/KiQ-Robotics/robot_self_filter.svg?branch=melodic-devel)](https://travis-ci.com/KiQ-Robotics/robot_self_filter)
+robot_self_filter
+
+[![](https://github.com/KiQ-Robotics/robot_self_filter/workflows/CI/badge.svg)](https://github.com/KiQ-Robotics/robot_self_filter/actions)
+
 =====================================================================================================================================================
 
 # Usage

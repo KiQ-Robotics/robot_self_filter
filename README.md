@@ -1,4 +1,4 @@
-robot_self_filter [![Build Status](https://api.travis-ci.com/Nishida-Lab/robot_self_filter.svg?branch=kinetic-devel)](https://travis-ci.com/Nishida-Lab/robot_self_filter)
+robot_self_filter [![Build Status](https://api.travis-ci.com/KiQ-Robotics/robot_self_filter.svg?branch=melodic-devel)](https://travis-ci.com/KiQ-Robotics/robot_self_filter)
 =====================================================================================================================================================
 
 # Usage

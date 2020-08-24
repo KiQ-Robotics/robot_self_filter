@@ -3,7 +3,9 @@ self_see_default_padding: .1
 self_see_default_scale: 1.0
 keep_organized: true
 subsample_value: 0.0
-use_rgb: false
-# see_link_names: 
+use_rgb: true
+# see_link_names:
 ignore_link_names:
    - name: world
+   - name: occipital_left
+   - name: occipital_right

@@ -261,8 +261,6 @@ public:
     for (unsigned int i = 0; i < bs; ++i)
     {
       std::string err;
-      // if (!tf_.waitForTransform(header.frame_id, bodies_[i].name, header.stamp, ros::Duration(.1), ros::Duration(.01),
-      //                           &err))
       if (!tf_.waitForTransform(header.frame_id, bodies_[i].name, ros::Time(0), ros::Duration(.1), ros::Duration(.01),
                                 &err))
       {
@@ -274,7 +272,6 @@ public:
       tf::StampedTransform transf;
       try
       {
-        // tf_.lookupTransform(header.frame_id, bodies_[i].name, header.stamp, transf);
         tf_.lookupTransform(header.frame_id, bodies_[i].name, ros::Time(0), transf);
       }
       catch (tf::TransformException& ex)
@@ -308,7 +305,7 @@ public:
     assumeFrame(header);
 
     std::string err;
-    if (!tf_.waitForTransform(header.frame_id, sensor_frame, header.stamp, ros::Duration(.1), ros::Duration(.01), &err))
+    if (!tf_.waitForTransform(header.frame_id, sensor_frame, ros::Time(0), ros::Duration(.1), ros::Duration(.01), &err))
     {
       ROS_ERROR("WaitForTransform timed out from %s to %s after 100ms.  Error string: %s", sensor_frame.c_str(),
                 header.frame_id.c_str(), err.c_str());
@@ -320,7 +317,7 @@ public:
     try
     {
       tf::StampedTransform transf;
-      tf_.lookupTransform(header.frame_id, sensor_frame, header.stamp, transf);
+      tf_.lookupTransform(header.frame_id, sensor_frame, ros::Time(0), transf);
       sensor_pos_ = transf.getOrigin();
     }
     catch (tf::TransformException& ex)

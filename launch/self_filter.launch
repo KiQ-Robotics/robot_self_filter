@@ -2,7 +2,7 @@
   <arg name="robot_filter_pc_src" default="/occipital_left/rgbd/points" />
   <arg name="robot_filter_pc_dst" default="/robot_filtered_cloud" />
 
-  <node pkg="robot_self_filter" type="self_filter" name="self_filter" respawn="true" output="screen">
+  <node pkg="robot_self_filter" type="self_filter" name="$(anon self_filter)" respawn="true" output="screen">
     <remap from="cloud_in" to="$(arg robot_filter_pc_src)" />
     <remap from="cloud_out" to="$(arg robot_filter_pc_dst)" />
   </node>

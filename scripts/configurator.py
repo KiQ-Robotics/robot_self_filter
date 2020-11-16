@@ -4,10 +4,11 @@ from urdf_parser_py.urdf import URDF
 
 class RobotSelfFilterConfigurator(object):
     def __init__(self, namespace="/self_filter"):
+        self.id_ = rospy.get_param("~id", 0)
         if namespace[0] is "/":
-            self.namespace_ = namespace
+            self.namespace_ = namespace + "_" + str(self.id_)
         else:
-            self.namespace_ = "/" + namespace
+            self.namespace_ = "/" + namespace + "_" + str(self.id_)
 
         self.semantic_param_name_ = rospy.get_param(
             "~semantic_param_name", "/robot_description_semantic")
@@ -23,7 +24,7 @@ class RobotSelfFilterConfigurator(object):
             self.semantic_param_name_)
 
     def get_linkname_list_(self):
-        robot = URDF.from_parameter_server();
+        robot = URDF.from_parameter_server()
         linkname_list = []
         for link in robot.links:
             link_name = link.name
@@ -36,7 +37,7 @@ class RobotSelfFilterConfigurator(object):
 
         if not see_linkname_list:
             rospy.logerr("links not found")
-        
+
         self_see_links = rospy.get_param("~see_link_names", see_linkname_list)
 
         see_list = [i.values() for i in see_linkname_list]
@@ -47,7 +48,7 @@ class RobotSelfFilterConfigurator(object):
         ignore_linkname_list = []
         self_ignore_links = rospy.get_param("~ignore_link_names", ignore_linkname_list)
         ignore_list = [i.values() for i in self_ignore_links]
-        
+
         target_links = [i for i in self_see_links if i.values() not in ignore_list]
         return target_links
 

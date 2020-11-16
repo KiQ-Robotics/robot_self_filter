@@ -3,11 +3,13 @@
   <arg name="robot_filter_config" default="robot_self_filter" />
   <arg name="robot_filter_pc_src" default="/occipital_left/rgbd/points" />
   <arg name="robot_filter_pc_dst" default="/robot_filtered_cloud" />
+  <arg name="id" default="0" />
 
-  <node pkg="robot_self_filter" type="configurator.py" name="$(anon robot_self_filter_configurator)" output="screen">
+  <node pkg="robot_self_filter" type="configurator.py" name="robot_self_filter_configurator_$(arg id)" output="screen">
     <rosparam command="load" file="$(find robot_self_filter)/config/$(arg robot_filter_config).yaml"/>
+    <param name="id" value="$(arg id)" />
   </node>
 
-  <node pkg="timed_roslaunch" type="timed_roslaunch.sh" name="$(anon timed_roslaunch)" args="2 robot_self_filter self_filter.launch robot_filter_pc_src:=$(arg robot_filter_pc_src) robot_filter_pc_dst:=$(arg robot_filter_pc_dst)" output="screen" />
+  <node pkg="timed_roslaunch" type="timed_roslaunch.sh" name="$(anon timed_roslaunch)" args="2 robot_self_filter self_filter.launch robot_filter_pc_src:=$(arg robot_filter_pc_src) robot_filter_pc_dst:=$(arg robot_filter_pc_dst) id:=$(arg id)" output="screen" />
 
 </launch>
